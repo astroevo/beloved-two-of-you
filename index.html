@@ -54,8 +54,8 @@
     <p class="sub">Your relationship reading, ready in one tap</p>
 
     <ol class="steps">
-      <li><span>1</span><div>Tap <b>Open in ChatGPT</b>. The prompt is copied and ChatGPT opens in a new tab.</div></li>
-      <li><span>2</span><div><b>Paste</b> the prompt into the new chat.</div></li>
+      <li><span>1</span><div>Tap <b>Open in ChatGPT</b>. It opens with the whole prompt already in the box.</div></li>
+      <li><span>2</span><div>If the box is empty, <b>paste</b>: the prompt is already copied.</div></li>
       <li><span>3</span><div>Paste <b>your note</b> underneath, attach the <b>four PDFs</b>, and send.</div></li>
     </ol>
 
@@ -102,10 +102,15 @@
 
   document.getElementById('gptBtn').addEventListener('click', function(){
     // Copy synchronously while this page still has focus, then open ChatGPT.
-    fallbackCopy(getPrompt());
-    var win = window.open('https://chatgpt.com/', '_blank');
+    // The prompt goes into the link itself, so ChatGPT opens with it already in the box.
+    // It is also copied, in case a phone opens the ChatGPT app without it.
+    var text = getPrompt();
+    fallbackCopy(text);
+    var enc = encodeURIComponent(text).replace(/%20/g, '+').replace(/%2C/g, ',').replace(/%3A/g, ':')
+      .replace(/%2F/g, '/').replace(/%3F/g, '?').replace(/%40/g, '@').replace(/%3B/g, ';');
+    var win = window.open('https://chatgpt.com/?prompt=' + enc, '_blank');
     if (win) win.opener = null;
-    say(win === null ? 'Copied. Open chatgpt.com and paste it into a new chat.' : 'Copied. Paste it into the new ChatGPT chat.');
+    say(win === null ? 'Copied. Open chatgpt.com and paste it into a new chat.' : 'ChatGPT opens with the prompt in the box. If the box is empty, just paste: it is already copied.');
   });
 </script>
 </body>
