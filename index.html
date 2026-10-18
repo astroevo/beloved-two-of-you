@@ -234,7 +234,7 @@
   <div class="toprule"></div>
   <p class="sub">Two sets of birth details in, the story of the two of you out</p>
 
-  <ol class="steps"><li><span>1</span><div>Fill in <b>your birth details and theirs</b> below and press <b>Calculate our charts</b>.</div></li><li><span>2</span><div>Tap <b>Open in ChatGPT</b>, or copy the prompt and paste it into <b>Claude</b> or <b>Gemini</b>.</div></li><li><span>3</span><div>When it asks <b>Shall I continue?</b>, answer <b>yes</b>. Then come back here to keep it.</div></li></ol>
+  <ol class="steps"><li><span>1</span><div>Fill in <b>your birth details and theirs</b> below and press <b>Calculate our charts</b>.</div></li><li><span>2</span><div>Tap <b>Open in ChatGPT</b>, or copy everything and paste it into <b>Claude</b> or <b>Gemini</b>.</div></li><li><span>3</span><div>When it asks <b>Shall I continue?</b>, answer <b>yes</b>. Then come back here to keep it.</div></li></ol>
 
   <section class="calc" id="calc">
     <div class="person"><h3>You</h3>
@@ -278,7 +278,7 @@
   <div id="after">
   <button id="gptBtn" type="button">Open in ChatGPT &nbsp;&#8599;</button>
   <div class="gap"></div>
-  <button id="copyBtn" class="line" type="button"><span id="copyLabel">Copy the prompt only</span></button>
+  <button id="copyBtn" class="line" type="button"><span id="copyLabel">Copy everything</span></button>
   <div class="gap"></div>
   <button id="claudeBtn" class="line" type="button">Open in Claude &nbsp;&#8599;</button>
   <div class="gap"></div>
@@ -351,7 +351,7 @@
     copyPrompt().then(function(){
       b.classList.add('done'); l.textContent='Copied';
       say('Now open a new chat in ChatGPT, Claude or Gemini and paste.');
-      setTimeout(function(){ b.classList.remove('done'); l.textContent='Copy the prompt only'; }, 2200);
+      setTimeout(function(){ b.classList.remove('done'); l.textContent='Copy everything'; }, 2200);
     });
   });
 
@@ -707,7 +707,7 @@ $('calcBtn').addEventListener('click', async function(){
       '<br>Together: ' + s.em + ' electromagnetic ' + (s.em === 1 ? 'connection' : 'connections') +
       ', connection theme ' + esc(s.theme) +
       (warn.length ? '<span class="warn">' + warn.join(' and ') + ' ' + WARN + '</span>' : ''),
-      'Your charts are ready. The prompt below now carries both, and everything between them.',
+      'Your charts are ready, with everything between them. Tap a button below to open your AI.',
       a.name + ' & ' + b.name);
   } catch(e) { msg(e.message || 'Something went wrong. Refresh the page and try again.'); }
 });
